@@ -1,0 +1,29 @@
+<div *ngIf="contact" class="card" style="width: 95%;">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{contact.firstName}} {{contact.lastName}}
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      {{contact.phoneNumber}}
+    </h6>
+
+    <p *ngIf="contact.description" class="card-text">
+      {{contact.description}}
+    </p>
+    <p *ngIf="!contact.description" class="card-text text-muted fst-italic">
+      There is no description for this contact.
+    </p>
+
+    <div style="display: flex;">
+      <div class="ms-auto update-icon" [routerLink]="['update-contact', contact._id]" style="cursor: pointer">
+        <i class="fa-solid fa-pen me-1"></i>
+        <span class="card-link">Update</span>
+      </div>
+      <div class="ms-4 delete-icon" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#deleteModal"
+        (click)="prepareDelete()">
+        <i class="fa-solid fa-trash me-1"></i>
+        <span class="card-link">Delete</span>
+      </div>
+    </div>
+  </div>
+</div>

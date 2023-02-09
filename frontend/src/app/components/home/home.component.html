@@ -1,0 +1,43 @@
+<app-loader *ngIf="loading" [text]="'Retrieving your contacts'"></app-loader>
+<div *ngIf="errorMessage" class="alert alert-danger text-center">{{errorMessage}}</div>
+<section *ngIf="!loading" class="container">
+  <h3 class="text-center mt-5">
+    {{user?.firstName}} {{user?.lastName}} welcome to The Social Network!
+  </h3>
+  <h5 *ngIf="!contacts.length" class="text-center mt-5">
+    There are no contacts yet, create the first one!
+  </h5>
+  <h5 *ngIf="contacts.length" class="text-center mb-5">
+    Here is your contact list
+  </h5>
+  <div class="row">
+    <div *ngFor="let contact of contacts" class="col-xl-4 col-md-6 col-sm-12 mb-4">
+      <app-contactCard [contact]="contact" (prepareDeleteHandler)="prepareDeleteHandler($event)"></app-contactCard>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete contact confirmation</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div *ngIf="contactToDelete" class="modal-body">
+        Are you sure you want to delete {{contactToDelete.firstName}} {{contactToDelete.lastName}} from your list of
+        contacts?
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteContact()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<app-loader *ngIf="loading" [text]="'Validating your data'"></app-loader>
+<div *ngIf="!loading" class="container">
+  <h2 class="text-center mt-5">Please log in to access to The Social Network</h2>
+  <div class="row justify-content-md-center mt-5">
+    <form class="col col-xl-5 col-lg-7 col-md-10" #logInForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email address</label>
+        <input type="email" [(ngModel)]="email" name="email" class="form-control" id="inputEmail" required>
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" [(ngModel)]="password" name="password" class="form-control" id="inputPassword" required>
+      </div>
+      <div *ngIf="error" class="alert alert-danger text-center">{{error}}</div>
+      <div class="mt-4" style="text-align: center">
+        <button type="submit" class="btn btn-primary px-4" [disabled]="!logInForm.form.valid">
+          Log in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

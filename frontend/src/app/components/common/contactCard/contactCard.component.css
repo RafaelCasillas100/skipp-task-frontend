@@ -1,0 +1,9 @@
+.update-icon svg,
+.update-icon span {
+  color: #008aff;
+}
+
+.delete-icon svg,
+.delete-icon span {
+  color: #ff0000b0;
+}

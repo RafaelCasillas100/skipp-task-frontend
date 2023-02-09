@@ -1,0 +1,46 @@
+<app-loader *ngIf="loading" [text]="'Adding your contact'"></app-loader>
+<div *ngIf="!loading" class="container mt-5">
+  <h2 class="text-center my-5">Please enter the data of your new contact!</h2>
+  <div class="row justify-content-md-center">
+    <form class="col col-xl-5 col-lg-7 col-md-10" #contactForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="inputName" class="form-label">First name</label>
+        <input type="text" [(ngModel)]="contact.firstName" name="firstName" class="form-control" id="inputName"
+          required>
+      </div>
+      <div class="mb-3">
+        <label for="inputLastName" class="form-label">Last name</label>
+        <input type="text" [(ngModel)]="contact.lastName" name="lastName" class="form-control" id="inputLastName"
+          required>
+      </div>
+      <div class="mb-3">
+        <label for="inputPhone" class="form-label">Phone number</label>
+        <input type="tel" [(ngModel)]="contact.phoneNumber" name="phoneNumber" class="form-control" id="inputPhone"
+          required>
+        <div class="form-text">The phone number must be 10 digits long.</div>
+      </div>
+      <div class="mb-3">
+        <label for="inputDescription" class="form-label">Contact description</label>
+        <span class="text-muted"> (optional)</span>
+        <textarea [(ngModel)]="contact.description" name="description" class="form-control"
+          id="inputDescription"></textarea>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger text-center">{{errorMessage}}</div>
+      <div *ngIf="successMessage" class="alert alert-success text-center">
+        {{successMessage}}
+        <br>
+        You will be redirected to you contact list page in {{redirectCounter}} seconds.
+      </div>
+
+      <div class="mt-4" style="text-align: center">
+        <button *ngIf="!contactId" type="submit" class="btn btn-primary px-4" [disabled]="!contactForm.form.valid">
+          Add contact
+        </button>
+        <button *ngIf="contactId" type="submit" class="btn btn-primary px-4" [disabled]="!contactForm.form.valid">
+          Update contact
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

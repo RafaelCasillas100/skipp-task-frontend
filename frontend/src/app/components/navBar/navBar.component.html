@@ -1,0 +1,42 @@
+<nav class="navbar bg-primary navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand me-4" routerLink="/">The Social Network</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="box-shadow: none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" style="width: 100%">
+        <li *ngIf="isAuthenticated" class="nav-item me-3" routerLinkActive="active-path"
+          [routerLinkActiveOptions]="{exact: true}">
+          <i class="fa-regular fa-address-book"></i>
+          <a class="nav-link" routerLink="/">
+            My Contact list
+          </a>
+        </li>
+        <li *ngIf="isAuthenticated" class="nav-item" routerLinkActive="active-path">
+          <i class="fa-solid fa-user-plus"></i>
+          <a class="nav-link" routerLink="/new-contact">
+            Add new contact
+          </a>
+        </li>
+        <li *ngIf="!isAuthenticated" class="nav-item ms-lg-auto me-3" routerLinkActive="active-path">
+          <i class="fa-solid fa-user-plus"></i>
+          <a class="nav-link" routerLink="/sign-in">
+            Sign up
+          </a>
+        </li>
+        <li *ngIf="!isAuthenticated" class="nav-item" routerLinkActive="active-path">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <a class="nav-link" routerLink="/log-in">
+            Log in
+          </a>
+        </li>
+        <li *ngIf="isAuthenticated" class="nav-item ms-lg-auto">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span class="nav-link" style="cursor: pointer" (click)="logOut()">Log out</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

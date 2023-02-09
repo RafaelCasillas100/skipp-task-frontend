@@ -1,0 +1,20 @@
+.container-fluid a,
+.container-fluid span,
+.container-fluid svg {
+  color: white;
+}
+
+.navbar {
+  padding: 1rem;
+}
+
+.active-path a,
+.active-path svg {
+  font-weight: bold;
+  color: gold;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
